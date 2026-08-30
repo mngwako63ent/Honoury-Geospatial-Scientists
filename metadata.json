@@ -1,0 +1,6 @@
+{
+  "name": "Honoury Geospatial Scientists",
+  "description": "Professional portal for Honoury Geospatial Scientists (HGS), offering premium geospatial data science, water & environmental analysis, and high-impact custom GIS solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
