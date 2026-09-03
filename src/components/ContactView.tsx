@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   Send, 
   MapPin, 
@@ -45,12 +46,34 @@ export default function ContactView() {
     }
 
     setSubmitting(true);
-    // Simulate real node API ingestion
-    setTimeout(() => {
+    
+    const templateParams = {
+      title: 'Consultation Request',
+      name: form.name || 'Unknown Name',
+      company: form.company || 'N/A',
+      email: form.email || 'no-email@example.com',
+      project_type: form.projectType || 'N/A',
+      message: (form.message || 'No message provided'),
+    };
+
+    console.log('EmailJS Payload:', templateParams);
+
+    emailjs.send(
+      'service_zl7p5mq', 
+      'template_1x3yn8p', 
+      templateParams, 
+      'jgBRP_Zwj1h0DDsDq'
+    )
+    .then((result) => {
       setSubmitting(false);
       setTicketLogged(true);
       setRecentTicketId(`HGS-INTAKE-${Math.floor(1000 + Math.random() * 9000)}`);
-    }, 1100);
+    })
+    .catch((error) => {
+      console.error('EmailJS Error:', error);
+      setSubmitting(false);
+      alert('A transmission error occurred. Please try again or contact us directly via email.');
+    });
   };
 
   return (

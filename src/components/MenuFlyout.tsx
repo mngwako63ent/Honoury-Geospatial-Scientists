@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Mail, Phone, Compass, Send, Check } from 'lucide-react';
 import { InquiryFormState } from '../types';
@@ -40,7 +41,25 @@ export default function MenuFlyout({ isOpen, onClose, setCurrentPage }: MenuFlyo
     }
 
     setSubmitting(true);
-    setTimeout(() => {
+    
+    const templateParams = {
+      title: 'Scoping Inquiry',
+      name: form.name || 'Unknown Name',
+      company: form.org || 'N/A',
+      email: form.email || 'no-email@example.com',
+      project_type: form.projectType || 'N/A',
+      message: (form.message || 'No message provided'),
+    };
+
+    console.log('EmailJS Payload:', templateParams);
+
+    emailjs.send(
+      'service_zl7p5mq', 
+      'template_1x3yn8p', 
+      templateParams, 
+      'jgBRP_Zwj1h0DDsDq'
+    )
+    .then((result) => {
       setSuccess(true);
       setSubmitting(false);
       setForm({
@@ -50,7 +69,12 @@ export default function MenuFlyout({ isOpen, onClose, setCurrentPage }: MenuFlyo
         projectType: 'water',
         message: ''
       });
-    }, 1100);
+    })
+    .catch((error) => {
+      console.error('EmailJS Error:', error);
+      setSubmitting(false);
+      alert('A transmission error occurred. Please try again or contact us directly via email.');
+    });
   };
 
   return (

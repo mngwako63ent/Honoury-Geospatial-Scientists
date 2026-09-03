@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type PageId = 'home' | 'about' | 'services' | 'projects' | 'contact';
+export type PageId = 'home' | 'about' | 'services' | 'contact';
 
 export interface TeamMember {
   id: string;

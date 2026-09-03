@@ -37,9 +37,8 @@ export default function Footer({ setCurrentPage }: FooterProps) {
             {[
               { label: 'Home', value: 'home' },
               { label: 'About Us', value: 'about' },
-              { label: 'Services', value: 'services' },
-              { label: 'Projects & Deliverables', value: 'projects' },
-              { label: 'Contact', value: 'contact' }
+               { label: 'Services', value: 'services' },
+               { label: 'Contact', value: 'contact' }
             ].map((lnk) => (
               <li key={lnk.value}>
                 <button

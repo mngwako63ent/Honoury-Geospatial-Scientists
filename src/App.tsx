@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import HomeView from './components/HomeView';
 import AboutView from './components/AboutView';
 import ServicesView from './components/ServicesView';
-import ProjectsView from './components/ProjectsView';
 import ContactView from './components/ContactView';
 import MenuFlyout from './components/MenuFlyout';
 import ScrollVideoBackground from './components/ScrollVideoBackground';
@@ -50,8 +49,6 @@ export default function App() {
           {currentPage === 'about' && <AboutView />}
 
           {currentPage === 'services' && <ServicesView />}
-
-          {currentPage === 'projects' && <ProjectsView />}
 
           {currentPage === 'contact' && <ContactView />}
         </main>
